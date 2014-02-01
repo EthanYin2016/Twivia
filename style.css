@@ -1,0 +1,17 @@
+#header{
+	text-align: center;
+	font-family: Georgia;
+	font-size: 3em;
+	font-weight: bold;
+	background-color: 4099FF;
+	width: 100%
+}
+
+#smallheadtext{
+	font-size: .5em;
+}
+
+body{
+	color: white;
+	background-color: black;
+}
