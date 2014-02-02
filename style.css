@@ -1,17 +1,48 @@
+body{
+	color: black;
+	background-color: white;
+	font-family:'Arvo';
+}
 #header{
 	text-align: center;
-	font-family: Georgia;
+	font-family: 'Arvo';
 	font-size: 3em;
 	font-weight: bold;
 	background-color: 4099FF;
-	width: 100%
+	width: 100%;
+	border-width: 10px;
+	border-style: solid;
+	border-color: black;
 }
-
 #smallheadtext{
 	font-size: .5em;
 }
-
-body{
-	color: white;
-	background-color: black;
+#question{
+	text-align:center;
+	text
 }
+#leftanswer{
+	width: 50%;
+	background-color: green;
+	float: left;
+}
+#leftanswer:hover{
+	background-color: white;
+	border-color: black;
+	border-width: 10px;
+}
+#rightanswer{
+	width: 50%;
+	background-color: red;
+	float: right;
+}
+#rightanswer:hover{
+	background-color: white;
+}
+#container{
+  height: 100px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+  
