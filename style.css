@@ -25,7 +25,7 @@ body{
 	width: 50%;
 	background-color: #00933B;
 	float: left;
-	text-align: center;
+	text-align: left;
 	font-size: 2em;
 	border-width: 5px;
 	border-color: black;
@@ -39,7 +39,7 @@ body{
 	width: 50%;
 	background-color:  #F90101;
 	float: right;
-	text-align: center;
+	text-align: right;
 	font-size: 2em;
 	border-width: 5px;
 	border-color: black;
