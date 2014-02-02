@@ -20,50 +20,43 @@
 	var LorR = rando(1);	
 	if(LorR<.5){
 		left = thistopic.getName();
-		alert("OHHHHH MY GAWDDDD!!!");
 		var wrongindex = rando(topicsArray.length);
-		alert(wrongindex);
 		while(wrongindex===index){
-			alert("what the fuck"+ wtfcounter);
 			wrongindex = rando(topicsArray.length);
-			wtfcounter++;
 		}
 		var notthistopic= topicsArray[wrongindex].getName();
 		right = notthistopic;
 	}else{
 		right = thistopic.getName();
-		alert("OHHHH NOOOOO WHYYYY?")
 		var wrongindex = rando(topicsArray.length);
-		alert(wrongindex);
 		while(wrongindex===index){
-			alert("what the fuck"+ wtfcounter);
 			wrongindex = rando(topicsArray.length);
-			wtfcounter++;
 		}
 		var notthistopic= topicsArray[wrongindex].getName();
 		left = notthistopic;
 	} 
 	document.getElementById('rightanswer').innerHTML= right;
 	document.getElementById('leftanswer').innerHTML= left;
-	//alert("OH NOOOOO FUCKKKKKKK!!!!");
         var data = google.visualization.arrayToDataTable(thistopic.getData());
         var options = {
           title: 'Seach interest over time'
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
-		  
-	$('rightanswer').click(function() {
+	 function checkifanswer(name){
+   	if(name===thistopic.getName()){
+		alert("Correct! Great Job!");
+	}else{ alert("Incorrect. Acquire better graph analysis skillz");
+	location.reload();
+   }
+   }
+	$("#rightanswer").click(function() {
        		checkifanswer(document.getElementById('rightanswer').innerHTML);
    }); 
-   $('leftanswer').click(function() {
+   $("#leftanswer").click(function() {
        		checkifanswer(document.getElementById('leftanswer').innerHTML);
    }); 
-   function checkifanswer(name){
-   	if(name===thistopic)
-		alert("you done good");
-	else alert("ya done fucked up");
-   } 
+  
       }
     </script>
 </head>
@@ -74,6 +67,7 @@
         <div id="leftanswer"> Left     </div>
         <div id="rightanswer">     Right </div>
     </div>
+	<div id="bigday"></div>
 	<div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
