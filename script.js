@@ -2,15 +2,14 @@ $(document).ready(function () {
 	function rando(numelements){
 		return numelements*Math.random(0,1);
 	};
-	document.getElementById('rightanswer').innerHTML 
-	=topics[rando(3)] + questionsend[rando(2)];
-	var LorR = doesitrando(1);
-	if(LorR<.5
-		)var left = obama.getName();
-	var right = topics[1].name;
-	
-	$("#rightanswer").text(right);
-	$("#leftanswer").text(left);
+	var LorR = rando(1);
+	var left ="not obama";
+	var right="not obama";
+	if(LorR<.5)
+		left = obama.getName();
+	else right = obama.getName();
+	document.getElementById('rightanswer').innerHTML= right;
+	document.getElementById('leftanswer').innerHTML= left;
 	alert("OH NOOOOO FUCKKKKKKK!!!!");
 });
 

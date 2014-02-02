@@ -13,8 +13,8 @@
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable(obama.getData());
-
+	    var index = Math.floor(4*Math.random(0,3));
+        var data = google.visualization.arrayToDataTable((topicsArray[index]).getData());
         var options = {
           title: 'Seach interest over time'
         };
