@@ -1,18 +1,44 @@
 <html>
 <head>
-	<title>[trendquiz]</title>
+	<title>{trendquiz}</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
 	<script language="javascript" type="text/javascript" src="jquery-2.1.0.min.js"></script>
 	<script type="text/javascript" src="script.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Time', 'Search Popularity'],
+          [ 2004,      12],
+          [ 2007,      45],
+          [ 2008,     32],
+          [ 2009,      100],
+          [ 2010,      76],
+          [ 2011,    63]
+        ]);
+
+        var options = {
+          title: 'Relative search popularity vs. time',
+          hAxis: {title: 'Time', minValue: 2008, maxValue: 2014},
+          vAxis: {title: 'Search Popularity', minValue: 0, maxValue: 100},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
-	<div id = "header">[trendquiz] <span id="smallheadtext">the Google Trends game.</span></div>
-	<div id = "question">Which of these topics was most popular in </div>
+	<div id = "header">{trendquiz} <span id="smallheadtext">the Google Trends game.</span></div>
+	<div id = "question">Whose search trend graph is this? </div>
     <div id="container">
         <div id="leftanswer"> Left </div>
         <div id="rightanswer"> Right </div>
     </div>
-</div>
+	<div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
