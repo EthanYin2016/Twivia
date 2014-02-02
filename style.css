@@ -1,5 +1,5 @@
 body{
-	color: black;
+	color: white;
 	background-color: white;
 	font-family:'Arvo';
 }
@@ -8,7 +8,7 @@ body{
 	font-family: 'Arvo';
 	font-size: 3em;
 	font-weight: bold;
-	background-color: #0266C8;
+	background-color: #4099FF ;
 	width: 100%-20px;
 	border-width: 10px;
 	border-style: solid;
@@ -20,32 +20,31 @@ body{
 #question{
 	text-align:center;
 	font-size: 2em;
+	color: black;
 }
 #leftanswer{
-	width: 50%;
-	background-color: #00933B;
+	width: 216px;
+	background-color: #4099FF;
 	float: left;
-	text-align: left;
+	text-align: center;
+	vertical-align: middle;
 	font-size: 2em;
-	border-width: 5px;
-	border-color: black;
+	border: 5px solid white;
 }
 #leftanswer:hover{
-	background-color: white;
-	border-color: black;
-	border-width: 10px;
+	border: 5px solid #0266C8;
 }
 #rightanswer{
-	width: 50%;
-	background-color:  #F90101;
+	width: 216px;
+	background-color:  #4099FF;
 	float: right;
-	text-align: right;
+	text-align: center;
+	vertical-align: middle;
 	font-size: 2em;
-	border-width: 5px;
-	border-color: black;
+	border: 5px solid white;
 }
 #rightanswer:hover{
-	background-color: white;
+	border: 5px solid  #0266C8;
 }
 #container{
   height: 100px;
