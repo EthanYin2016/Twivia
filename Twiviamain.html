@@ -15,23 +15,55 @@
 	    var index = Math.floor(topicsArray.length*Math.random(0,1));
 		var thistopic = topicsArray[index];
 		function rando(numelements){
-		return numelements*Math.random(0,1);
+		return Math.floor(numelements*Math.random(0,1));
 	};
 	var LorR = rando(1);	
-	var left ="not " + thistopic.getName();
-	var right="not " + thistopic.getName();
-	if(LorR<.5)
+	if(LorR<.5){
 		left = thistopic.getName();
-	else right = thistopic.getName();
+		alert("OHHHHH MY GAWDDDD!!!");
+		var wrongindex = rando(topicsArray.length);
+		alert(wrongindex);
+		while(wrongindex===index){
+			alert("what the fuck"+ wtfcounter);
+			wrongindex = rando(topicsArray.length);
+			wtfcounter++;
+		}
+		var notthistopic= topicsArray[wrongindex].getName();
+		right = notthistopic;
+	}else{
+		right = thistopic.getName();
+		alert("OHHHH NOOOOO WHYYYY?")
+		var wrongindex = rando(topicsArray.length);
+		alert(wrongindex);
+		while(wrongindex===index){
+			alert("what the fuck"+ wtfcounter);
+			wrongindex = rando(topicsArray.length);
+			wtfcounter++;
+		}
+		var notthistopic= topicsArray[wrongindex].getName();
+		left = notthistopic;
+	} 
 	document.getElementById('rightanswer').innerHTML= right;
 	document.getElementById('leftanswer').innerHTML= left;
-	alert("OH NOOOOO FUCKKKKKKK!!!!");
+	//alert("OH NOOOOO FUCKKKKKKK!!!!");
         var data = google.visualization.arrayToDataTable(thistopic.getData());
         var options = {
           title: 'Seach interest over time'
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
+		  
+	$('rightanswer').click(function() {
+       		checkifanswer(document.getElementById('rightanswer').innerHTML);
+   }); 
+   $('leftanswer').click(function() {
+       		checkifanswer(document.getElementById('leftanswer').innerHTML);
+   }); 
+   function checkifanswer(name){
+   	if(name===thistopic)
+		alert("you done good");
+	else alert("ya done fucked up");
+   } 
       }
     </script>
 </head>
