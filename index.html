@@ -9,45 +9,76 @@
 	<script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
+		if(typeof localStorage.score==="undefined"){
+			localStorage.score=0;
+		}
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {
-	    var index = Math.floor(topicsArray.length*Math.random(0,1));
+	    var wrongindex=0;
+		var lastone= 0;
+		function getnewindex(num){
+			num = Math.floor(topicsArray.length*Math.random(0,1));
+			if(num===lastone || num === index || num===wrongindex){
+				getnewindex();
+			}
+			else {
+				lastone = num;
+				return num;
+				}
+		}
+		var index = getnewindex(index);
 		var thistopic = topicsArray[index];
 		function rando(numelements){
 		return Math.floor(numelements*Math.random(0,1));
 	};
-	var LorR = rando(1);	
+	var LorR = rando(2);
+	var lastone= 0;
 	if(LorR<.5){
 		left = thistopic.getName();
-		var wrongindex = rando(topicsArray.length);
-		while(wrongindex===index){
-			wrongindex = rando(topicsArray.length);
-		}
+		wrongindex = getnewindex(wrongindex);
 		var notthistopic= topicsArray[wrongindex].getName();
 		right = notthistopic;
 	}else{
 		right = thistopic.getName();
-		var wrongindex = rando(topicsArray.length);
-		while(wrongindex===index){
-			wrongindex = rando(topicsArray.length);
-		}
+		wrongindex = getnewindex(wrongindex);
 		var notthistopic= topicsArray[wrongindex].getName();
 		left = notthistopic;
 	} 
 	document.getElementById('rightanswer').innerHTML= right;
 	document.getElementById('leftanswer').innerHTML= left;
+	document.getElementById('question').innerHTML= "Whose search trend graph is this?  Score: "+ localStorage.score;
         var data = google.visualization.arrayToDataTable(thistopic.getData());
         var options = {
-          title: 'Seach interest over time'
+          title: 'Seach interest over time',
+		  hAxis: {gridlines: {count: 10}}
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
         chart.draw(data, options);
 	 function checkifanswer(name){
-   	if(name===thistopic.getName()){
-		alert("Correct! Great Job!");
-	}else{ alert("Incorrect. Acquire better graph analysis skillz");
-	location.reload();
+   	var condition = false;
+	var move_on = function(){
+    if(condition){
+        location.reload();
+    }
+    else {
+		condition = true;
+        setTimeout(move_on, 1000); 
+    }
+}
+	if(name===thistopic.getName()){
+		localStorage.score=Number(localStorage.score)+10;
+		document.getElementById('question').innerHTML= "Correct! Great Job! Score: " + localStorage.score;
+		if(localStorage.score+1>100){
+			alert("Congrats! You have great talent and you have brought much honor upon your country.")
+			}
+		move_on();
+	}else{ ;
+		localStorage.score= Number(localStorage.score)-10;;
+		document.getElementById('question').innerHTML="Incorrect. Acquire better graph analysis skillz. Score: " + localStorage.score;
+		
+			
+		move_on();
    }
    }
 	$("#rightanswer").click(function() {
@@ -61,13 +92,12 @@
     </script>
 </head>
 <body>
-	<div id = "header">{trendquiz} <span id="smallheadtext">the Google Trends game.</span></div>
-	<div id = "question">Whose search trend graph is this? </div>
+	<div id = "header"> {trendquiz}: <span id="smallheadtext">Every graph is a story.</span></div>
+	<div id = "question" >Whose search trend graph is this?</div>
     <div id="container">
         <div id="leftanswer"> Left     </div>
         <div id="rightanswer">     Right </div>
     </div>
-	<div id="bigday"></div>
 	<div id="chart_div" style="width: 900px; height: 500px;"></div>
 </body>
 </html>
